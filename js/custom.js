@@ -8,6 +8,16 @@ function getYear() {
 getYear();
 
 
+
+foodListData = [
+    {
+        "name": "Canh cải ngọt",
+        "desc": "Canh cải ngọt thịt bằm thơm ngon",
+        "image": "https://cdn.tgdd.vn/2021/04/CookProduct/caingotthitbamthumb-1200x676-1200x676.jpg",
+        "chef": "Khánh An",
+        "filter": "canh"
+    }
+]
 // isotope js
 $(window).on('load', function () {
     function createRecipeHTML(recipe) {
@@ -89,13 +99,13 @@ $(window).on('load', function () {
             </div>
         </div>
         `;
-    }  
-
+    } 
+     
     function render(data){
         const foodList = $("#food-list");
         foodList.empty()
 
-        data.data.forEach(function (recipe) {
+        data.forEach(function (recipe) {
             const recipeHTML = createRecipeHTML(recipe);
             foodList.append(recipeHTML);
         });
@@ -119,14 +129,7 @@ $(window).on('load', function () {
         });
     }
 
-    fetch('../db/food.json') // Replace with the correct path to your JSON file
-            .then(response => response.json())
-            .then(data => {
-                render(data);
-            })
-            .catch(error => {
-                console.error("Error reading the JSON file:", error);
-            });
+    render(foodListData)
 });
 
 // nice select
